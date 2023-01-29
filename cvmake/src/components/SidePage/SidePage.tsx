@@ -1,29 +1,43 @@
-import { Menu } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import Sider from 'antd/es/layout/Sider'
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
-import { navData } from '../navData';
+import { Menu } from "antd";
+import { Content } from "antd/es/layout/layout";
+import Sider from "antd/es/layout/Sider";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { navData } from "../navData";
 
-
-
-
-
+const { SubMenu } = Menu;
 
 export default function SidePage(props: any) {
     return (
-        <Sider 
-
-        >
+        <Sider style={{ height: "100vh" }}>
             <div>
-                {navData.map(item => {
-                    return (
-                    <Link key={item.id} to={item.link}>
+                <div
+                    style={{
+                        display: "block",
+                    }}
+                >
+                    <Menu
+                        defaultOpenKeys={["0"]}
+                        defaultSelectedKeys={["1"]}
+                        mode="inline"
+                    >
+                      <SubMenu title="CV Bilgileri">
 
-                        <div >{item.text}</div>
-                    </Link>
-                    )
-                })}
-            </div></Sider>
-    )
+                      {navData.map((item) => {
+                                return (
+                                  
+                                        <Menu.Item key={item.id}>{item.text}</Menu.Item>
+                                 
+                                );
+                            })}
+
+                      </SubMenu>
+                  
+
+                       
+                    </Menu>
+                </div>
+            </div>
+        </Sider>
+    );
 }

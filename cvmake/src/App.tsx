@@ -20,7 +20,7 @@ function App(props:any) {
           <Content ></Content>
 
         </Layout>
-        <Footer>FOOT</Footer>
+       
       </Layout>
     </BrowserRouter >
 

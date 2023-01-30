@@ -1,17 +1,32 @@
-import React, { useState } from 'react'
+import { Button, Form, Input } from 'antd'
+import React, { useEffect, useState } from 'react'
 
-export default function Çalışma(props:any) {
-    
-    return (
-      <div>
-        <label htmlFor="Ad">Unvan</label>
-        <input type="text" onChange={e => { props.setUnvan(e.target.value) }}></input>
-        <label htmlFor="Soyad">Soyad</label>
-        <input type="text" onChange={e => {  props.setŞirket(e.target.value) }}></input>
-        <label htmlFor="Telefon">Telefon</label>
-        <input type="text" onChange={e => {  props.setBaş(e.target.value) }}></input>
-        <label htmlFor="Mail">Mail</label>
-        <input type="text" onChange={e => {  props.setBitiş(e.target.value) }}></input>
-      </div>
-    )
+export default function Çalışma(props: any) {
+  
+  
+
+  return (<div>
+    <Form >
+      <Form.Item>Ünvan
+        <Input value= {props?.n?.iş.ünvan} name='ünvan' onChange={props.handleİş}></Input>
+      </Form.Item>
+      <Form.Item>Kurum
+        <Input value= {props?.n?.iş.kurum} name="kurum" onChange={props.handleİş}></Input>
+      </Form.Item>
+      <Form.Item>Başlangıç
+        <Input value= {props?.n?.iş.baş} type="date" name='baş' onChange={props.handleİş}></Input>
+      </Form.Item>
+      <Form.Item>Bitiş
+        <Input value= {props?.n?.iş.bitiş} type="date" name='bitiş' onChange={props.handleİş}></Input>
+      </Form.Item>
+      <Form.Item>Yaptığınız işi açıklayınız...
+        <Input value= {props?.n?.iş.ünvan} type="text" name='desc' onChange={props.handleİş}></Input>
+      </Form.Item>
+
+      <Form.Item>
+        <Button onClick={props.handleSubmitI}>Kaydet</Button>
+      </Form.Item>
+    </Form>
+
+  </div>)
 }

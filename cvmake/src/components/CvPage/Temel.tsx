@@ -1,19 +1,39 @@
+import { Button, Form, Input } from 'antd'
 import React, { useEffect, useState } from 'react'
 
-export default function CvPage(props:any) {
-  
-  
+export default function CvPage(props: any) {
+
+
+
 
   return (
     <div>
-      <label htmlFor="Ad">Tam Adınız</label> 
-      <input type="text" onChange={e => { props.setName(e.target.value) }}></input>
-      <label htmlFor="Soyad">Soyad</label>
-      <input type="text" onChange={e => { props.setSurname(e.target.value) }}></input>
-      <label htmlFor="Telefon">Telefon</label>
-      <input type="text" onChange={e => { props.setTel(e.target.value) }}></input>
-      <label htmlFor="Mail">Mail</label>
-      <input type="text" onChange={e => { props.setMail(e.target.value) }}></input>
+      <Form>
+        <Form.Item htmlFor="Ad">Ad
+          <Input value={props.n.temel.name} type="text" name='name' onChange={props.handleTemel}></Input>
+        </Form.Item>
+        <Form.Item htmlFor="Soyad">Soyad
+          <Input value={props.n.temel.surname} type="text" name="surname" onChange={props.handleTemel}></Input>
+        </Form.Item>
+        <Form.Item htmlFor="Telefon">Telefon
+
+          <Input value={props.n.temel.tel} type="text" name='tel' onChange={props.handleTemel}></Input>
+        </Form.Item>
+        <Form.Item htmlFor="Mail">Mail
+          <Input value={props.n.temel.mail} type="text" name='mail' onChange={props.handleTemel}></Input>
+        </Form.Item>
+        <Form.Item htmlFor="Adres">Adres
+          <Input value={props.n.temel.adres} type="text" name="adres" onChange={props.handleTemel}></Input>
+        </Form.Item>
+
+        <Form.Item htmlFor='foto'>Foto
+          <Input type="file" onChange={props.handleFile} />
+        </Form.Item>
+        <Form.Item>
+          <Button onClick={props.handleSubmitT}>Kaydet</Button>
+        </Form.Item>
+      </Form>
+
     </div>
   )
 }

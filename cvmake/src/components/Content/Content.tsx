@@ -11,38 +11,98 @@ import Çalışma from '../CvPage/Çalışma';
 import İlgi from '../CvPage/İlgil';
 
 export default function Content(props: any) {
-    const [name, setName] = useState("")
-    const [surname, setSurname] = useState("")
-    const [tel, setTel] = useState("")
-    const [mail, setMail] = useState("")
-    const [ünvan, setUnvan] = useState("")
-    const [şirket, setŞirket] = useState("")
-    const [başç, setBaşç] = useState("")
-    const [bitişç, setBitişç] = useState("")
-    const [bölüm, setBölüm] = useState("")
-    const [kurum, setKurum] = useState("")
-    const [başö, setBaşö] = useState("")
-    const [bitişö, setBitişö] = useState("")
+    const [temel, setTemel] = useState({
+        name: "",
+        surname: "",
+        tel: "",
+        mail: "",
+        adres: "",
+    })
+    const [iş, setİş] = useState({
+        ünvan: "",
+        kurum: "",
+        baş: "",
+        bitiş: "",
+        desc: "",
+
+    })
+    const [eğitim, setEğitim] = useState({
+        okul: "",
+        bölüm: "",
+        baş: "",
+        bitiş: "",
+
+
+    })
+    const [işlist, setİşlist] = useState<object[] | []>([])
+    const [eğlist, setEğlist] = useState<object[] | []>([])
     const [nitelik, setNitelik] = useState("")
     const [ref, setRef] = useState("")
     const [ilgi, setİlgi] = useState("")
+    const [foto, setFoto] = useState("")
+
+    const handleTemel = (e: any) => {
+        setTemel((old) => {
+            return {
+                ...old,
+                [e.target.name]: e.target.type = e.target.value
+            }
+        })
+
+    }
+    const handleİş = (e: any) => {
+        setİş((old) => {
+            return {
+                ...old,
+                [e.target.name]: e.target.type = e.target.value
+            }
+        })
+
+
+    }
+    const handleEğitim = (e: any) => {
+        setEğitim((old) => {
+            return {
+                ...old,
+                [e.target.name]: e.target.type = e.target.value
+            }
+        })
+
+
+    }
+
+    const handleSubmitE = (e: any) => {
+        setEğlist(prev => [...prev, eğitim])
+
+
+    }
+    const handleSubmitI = (e: any) => {
+        setİşlist(prev => [...prev, iş])
+
+    }
+    function handleFile(e: any) {
+        console.log(typeof (URL.createObjectURL(e.target.files[0])));
+
+        setFoto(URL.createObjectURL(e.target.files[0]));
+        // setFile(URL.createObjectURL(e.target.files[0]));
+    }
 
     let user = {
-        name:name,
-        surname:surname,
-        tel:tel,
-        mail:mail,
-        ünvan:ünvan,
-        şirket:şirket,
-        başç:başç,
-        bitişç:bitişç,
-        bölüm:bölüm,
-        kurum:kurum,
-        başö:başö,
-        bitişö:bitişö,
-        nitelik:nitelik,
-        ref:ref,
-        ilgi:ilgi,
+        temel: {
+            name: temel.name,
+            surname: temel.surname,
+            tel: temel.tel,
+            mail: temel.mail,
+            adres: temel.adres,
+        },
+        iş: iş,
+        eğitim: eğitim,
+        işlist: işlist,
+        eğlist: eğlist,
+        nitelik: nitelik,
+        ref: ref,
+        ilgi: ilgi,
+        foto: foto,
     }
 
     return (
@@ -50,12 +110,12 @@ export default function Content(props: any) {
 
         >
             <Routes>
-                <Route path="/Temel" element={<Temel setName={setName} setSurname={setSurname} setTel={setTel} setMail={setMail} />} />
-                <Route path="/Çalışma" element={<Çalışma setUnvan={setUnvan} setŞirket={setŞirket} setBaşç={setBaşç} setBitişç={setBitişç} />} />
-                <Route path="/Eğitim" element={<Egitim setBölüm={setBölüm} setKurum={setKurum} setBaşö={setBaşö} setBitişö={setBitişö}/>} />
-                <Route path="/Nitelikler" element={<Nitelikler setNitelik={setNitelik}/>} />
-                <Route path="/ilgi" element={<İlgi setİlgi={setİlgi}/>} />
-                <Route path="/ref" element={<Ref setRef={setRef}/>} />
+                <Route path="/Temel" element={<Temel n={user} handleTemel={handleTemel} handleFile={handleFile} />} />
+                <Route path="/Çalışma" element={<Çalışma n={user} handleSubmitI={handleSubmitI} handleİş={handleİş} />} />
+                <Route path="/Eğitim" element={<Egitim n={user} handleSubmitE={handleSubmitE} handleEğitim={handleEğitim} />} />
+                <Route path="/Nitelikler" element={<Nitelikler n={user} setNitelik={setNitelik} />} />
+                <Route path="/ilgi" element={<İlgi n={user} setİlgi={setİlgi} />} />
+                <Route path="/ref" element={<Ref n={user} setRef={setRef} />} />
                 <Route path="/final" element={<Final n={user} />} />
 
             </Routes>

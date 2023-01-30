@@ -21,20 +21,22 @@ export default function SidePage(props: any) {
                         defaultSelectedKeys={["1"]}
                         mode="inline"
                     >
-                      <SubMenu title="CV Bilgileri">
+                        <SubMenu title="CV Bilgileri">
 
-                      {navData.map((item) => {
+                            {navData.map((item) => {
                                 return (
-                                  
+                                    <Link to={item.link}>
                                         <Menu.Item key={item.id}>{item.text}</Menu.Item>
-                                 
+                                    
+                                    </Link>
+
                                 );
                             })}
 
-                      </SubMenu>
-                  
+                        </SubMenu>
 
-                       
+
+
                     </Menu>
                 </div>
             </div>

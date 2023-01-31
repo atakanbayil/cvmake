@@ -17,7 +17,7 @@ export default function SidePage(props: any) {
                         display: "block",
                     }}
                 >
-                    <Paper>
+                    <Paper style={{borderRadius:"0px"}}>
                         <MenuList>
                             {navData.map((item) => {
                                 return (

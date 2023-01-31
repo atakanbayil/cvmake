@@ -21,12 +21,12 @@ export default function SidePage(props: any) {
                 <div
                     
                 >
-                    <Paper>
+                    <Paper style={{borderRadius:"0px"}}>
                         <MenuList >
                             {templates.map((item) => {
                                 return (
                                     
-                                        <MenuItem ><img style ={{height:225}}src={item.src}></img></MenuItem>
+                                        <MenuItem onClick={()=>props.setPage(item.id)}><img style ={{height:225}}src={item.src}></img></MenuItem>
                                     
 
                                 )

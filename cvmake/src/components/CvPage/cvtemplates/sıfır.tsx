@@ -1,5 +1,9 @@
 
 export default function Sıfır(props: any) {
+
+    const len = props.n.eğlist.length
+
+
     return (
         <div style={{ width: "60vh" }} >
             <div >
@@ -25,18 +29,7 @@ export default function Sıfır(props: any) {
                 </p>
                 <div style={{ opacity: 1, transform: "rotate(-1.963427412997697e-16deg)", mixBlendMode: "normal", borderColor: "black", borderWidth: "0.3px", border: "solid", alignItems: "inherit" }}></div>
                 <div style={{ height: "20vh" }}>
-                    {props.n.işlist.length ? props.n.işlist.map((item: any) => {
-                        return (
-                            <div>
-                                <div>{item.ünvan}</div>
-                                <div>{item.kurum}</div>
-                                <div>{item.baş}</div>
-                                <div>{item.bitiş}</div>
-                                <div>{item.desc}</div>
-                            </div>
-
-                        )
-                    }) : (
+                    {!props.n.işlist.length ? 
                         <div>
                             <div>{props.n.iş.ünvan}</div>
                             <div>{props.n.iş.kurum}</div>
@@ -44,8 +37,39 @@ export default function Sıfır(props: any) {
                             <div>{props.n.iş.bitiş}</div>
                             <div>{props.n.iş.desc}</div>
                         </div>
-                    )
-                    }
+                    :props.n.işlist.map((item: any, i: any) => {
+                        if (   i == props.n.işlist.length-1) {
+                            return (
+                                <div>
+                                    <div>{item.ünvan}</div>
+                                    <div>{item.kurum}</div>
+                                    <div>{item.baş}</div>
+                                    <div>{item.bitiş}</div>
+                                    <div>{item.desc}</div>
+                                    <div>{props.n.iş.ünvan}</div>
+                                    <div>{props.n.iş.kurum}</div>
+                                    <div>{props.n.iş.baş}</div>
+                                    <div>{props.n.iş.bitiş}</div>
+                                    <div>{props.n.iş.desc}</div>
+
+                                </div>
+
+                            )
+                        }
+                        else {
+                            return (
+                                <div>
+                                    <div>{item.ünvan}</div>
+                                    <div>{item.kurum}</div>
+                                    <div>{item.baş}</div>
+                                    <div>{item.bitiş}</div>
+                                    <div>{item.desc}</div>
+
+                                </div>
+
+                            )
+                        }
+                    })}
                 </div>
             </div>
 
@@ -55,27 +79,65 @@ export default function Sıfır(props: any) {
             </p>
             <div style={{ opacity: 1, transform: "rotate(-1.963427412997697e-16deg)", mixBlendMode: "normal", borderColor: "black", borderWidth: "0.3px", border: "solid", alignItems: "inherit" }}></div>
             <div style={{ height: "20vh" }}>
-                {props.n.eğlist.length ? props.n.eğlist.map((item: any) => {
-                    return (
-                        <div>
-                            <div>{item.okul}</div>
-                            <div>{item.bölüm}</div>
-                            <div>{item.baş}</div>
-                            <div>{item.bitiş}</div>
-
-                        </div>
-
-                    )
-                }) :
+                {!props.n.eğlist.length ?
                     <div>
                         <div>{props.n.eğitim.okul}</div>
                         <div>{props.n.eğitim.bölüm}</div>
                         <div>{props.n.eğitim.baş}</div>
-                        <div>{props.n.eğitim.bitiş }</div>
+                        <div>{props.n.eğitim.bitiş}</div>
 
                     </div>
+                    : props.n.eğlist.map((item: any, i: any) => {
+                        if (i == props.n.eğlist.length-1) {
+                            
+                            return (
+                                <div>
+                                    <div>{item.okul}</div>
+                                    <div>{item.bölüm}</div>
+                                    <div>{item.baş}</div>
+                                    <div>{item.bitiş}</div>
+                                    <div>{props.n.eğitim.okul}</div>
+                                    <div>{props.n.eğitim.bölüm}</div>
+                                    <div>{props.n.eğitim.baş}</div>
+                                    <div>{props.n.eğitim.bitiş}</div>
+
+                                </div>
+
+                            )
+                        }
+                        else {
+                            return (
+                                <div>
+                                    <div>{item.okul}</div>
+                                    <div>{item.bölüm}</div>
+                                    <div>{item.baş}</div>
+                                    <div>{item.bitiş}</div>
+
+                                </div>
+
+                            )
+                        }
+
+
+                    })
                 }
+
+
             </div>
         </div>
     )
 }
+{/*props.n.eğlist.map((item: any) => {
+                        return (
+                            <div>
+                                <div>{item.okul}</div>
+                                <div>{item.bölüm}</div>
+                                <div>{item.baş}</div>
+                                <div>{item.bitiş}</div>
+
+                            </div>
+
+                        )
+
+                    })
+                } */}

@@ -1,8 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { Container } from "reactstrap";
 import Egitim from '../CvPage/Eğitim';
-import Eğitim from '../CvPage/Eğitim';
 import Final from '../CvPage/Final';
 import Nitelikler from '../CvPage/Nitelikler';
 import Ref from '../CvPage/Ref';
@@ -95,7 +93,13 @@ export default function Content(props: any) {
             mail: temel.mail,
             adres: temel.adres,
         },
-        iş: iş,
+        iş: {
+            ünvan:iş.ünvan,
+            kurum:iş.kurum,
+            baş:iş.baş,
+            bitiş:iş.bitiş,
+            desc:iş.desc
+        },
         eğitim: eğitim,
         işlist: işlist,
         eğlist: eğlist,
@@ -104,9 +108,14 @@ export default function Content(props: any) {
         ilgi: ilgi,
         foto: foto,
     }
+    useEffect(() => {
+        props.pull_data(user)
+    
+    }, [user])
+    
 
     return (
-        <Container
+        <div  style={{width:"50%"}}
 
         >
             <Routes>
@@ -119,6 +128,6 @@ export default function Content(props: any) {
                 <Route path="/final" element={<Final n={user} />} />
 
             </Routes>
-        </Container>
+        </div>
     )
 }

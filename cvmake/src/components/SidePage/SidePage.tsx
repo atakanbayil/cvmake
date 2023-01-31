@@ -4,7 +4,8 @@ import Sider from "antd/es/layout/Sider";
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navData } from "../navData";
-
+import Paper from '@mui/material/Paper';
+import { MenuItem, MenuList } from "@mui/material";
 const { SubMenu } = Menu;
 
 export default function SidePage(props: any) {
@@ -16,28 +17,18 @@ export default function SidePage(props: any) {
                         display: "block",
                     }}
                 >
-                    <Menu
-                        defaultOpenKeys={["0"]}
-                        defaultSelectedKeys={["1"]}
-                        mode="inline"
-                    >
-                        <SubMenu title="CV Bilgileri">
-
+                    <Paper>
+                        <MenuList>
                             {navData.map((item) => {
                                 return (
                                     <Link to={item.link}>
-                                        <Menu.Item key={item.id}>{item.text}</Menu.Item>
-                                    
+                                        <MenuItem>{item.text}</MenuItem>
                                     </Link>
 
-                                );
+                                )
                             })}
-
-                        </SubMenu>
-
-
-
-                    </Menu>
+                        </MenuList>
+                    </Paper>
                 </div>
             </div>
         </Sider>

@@ -19,7 +19,7 @@ export default function Final(props: any) {
   </Row>*/}
       <Row>
         <Col>
-          <ProfileDetails n={props.n} />
+          <ProfileDetails page={props.page} n={props.n} />
         </Col>
       </Row>
     </div>);

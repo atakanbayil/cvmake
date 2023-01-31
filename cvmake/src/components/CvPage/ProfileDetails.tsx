@@ -1,68 +1,58 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Table } from 'reactstrap'
+import Bir from './cvtemplates/bir'
+import Sıfır from './cvtemplates/sıfır'
 
 export default function ProfileDetails(props: any) {
-    return (
-        <div >
-            <div >
-                <p >
-                    Hakkında
-                </p>
-                <div style={{ width: "200vh", opacity: 1, transform: "rotate(-1.963427412997697e-16deg)", mixBlendMode: "normal", borderColor: "black", borderWidth: "0.3px", border: "solid", alignItems: "inherit" }}></div>
-                <div style={{ height: "20vh" }}>
 
-                    <div>
-                        <div>{props.n.temel.name}</div>
-                        <div>{props.n.temel.surname}</div>
-                        <div>{props.n.temel.tel}</div>
-                        <div>{props.n.temel.mail}</div>
-                        <div>{props.n.temel.adres}</div>
-                    </div>
 
-                </div>
-            </div>
-            <div >
-                <p >
-                    Deneyim
-                </p>
-                <div style={{ opacity: 1, transform: "rotate(-1.963427412997697e-16deg)", mixBlendMode: "normal", borderColor: "black", borderWidth: "0.3px", border: "solid", alignItems: "inherit" }}></div>
-                <div style={{ height: "20vh" }}>
-                    {props.n?.işlist?.map((item: any) => {
-                        return (
-                            <div>
-                                <div>{item.ünvan}</div>
-                                <div>{item.kurum}</div>
-                                <div>{item.baş}</div>
-                                <div>{item.bitiş}</div>
-                                <div>{item.desc}</div>
-                            </div>
+    useEffect(() => {
+        
+    }, [props.page])
 
-                        )
-                    })}
-                </div>
-            </div>
 
-            <div ></div>
-            <p >
-                Eğitim
-            </p>
-            <div style={{ opacity: 1, transform: "rotate(-1.963427412997697e-16deg)", mixBlendMode: "normal", borderColor: "black", borderWidth: "0.3px", border: "solid", alignItems: "inherit" }}></div>
-            <div style={{ height: "20vh" }}>
-                {props.n?.eğlist?.map((item: any) => {
-                    return (
-                        <div>
-                            <div>{item.okul}</div>
-                            <div>{item.bölüm}</div>
-                            <div>{item.baş}</div>
-                            <div>{item.bitiş}</div>
+    switch (props.page) {
+        case 0:
+            return (
+                <Sıfır n={props.n}></Sıfır>)
+        case 1:
+            return (
+                <Bir/>)
+        case 2:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 3:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 4:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 5:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 6:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 7:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
+        case 8:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
 
-                        </div>
+        case 9:
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>)
 
-                    )
-                })}
-            </div>
-        </div>
-    )
+        default:
+
+            return (
+                <div style={{ width: "50%" }}>Content{props.page}</div>
+            )
+
+        
+
+    }
 }
 
 

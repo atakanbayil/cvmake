@@ -20,7 +20,7 @@ export default function Egitim(props: any) {
           <Input value={props.n.eğitim.bitiş} type="date" name='bitiş' onChange={props.handleEğitim}></Input>
         </Form.Item>
         <Form.Item>
-          <Button onClick={props.handleSubmitE}>Kaydet</Button>
+          <Button onClick={props.handleSubmitE}>Ekle</Button>
         </Form.Item>
       </Form>
 

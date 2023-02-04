@@ -1,9 +1,10 @@
+import imag from "../pub/temp1.png"
 export const templates = [
     {
         id: 0,
         text: "Temel Bilgiler",
         link: "Temel",
-        src: "https://www.cvmaker.com.tr/assets/images/cvs/8/cv-example-auckland-333333.min.jpg",
+        src: imag,
     },
     {
         id: 1,

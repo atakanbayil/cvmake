@@ -1,11 +1,12 @@
 import { Button, Form, Input } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function Çalışma(props: any) {
   
   
 
-  return (<div>
+  return (
+  <div>
     <Form >
       <Form.Item>Ünvan
         <Input value= {props.n.iş.ünvan} name='ünvan' onChange={props.handleİş}></Input>
@@ -24,7 +25,7 @@ export default function Çalışma(props: any) {
       </Form.Item>
 
       <Form.Item>
-        <Button onClick={props.handleSubmitI}>Kaydet</Button>
+        <Button onClick={props.handleSubmitI}>Ekle</Button>
       </Form.Item>
     </Form>
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function CvPage(props: any) {
 
-
+  //console.log("as")
 
 
   return (
@@ -27,10 +27,11 @@ export default function CvPage(props: any) {
         </Form.Item>
 
         <Form.Item htmlFor='foto'>Foto
-          <Input type="file" onChange={props.handleFile} />
-        </Form.Item>
-        <Form.Item>
-          <Button onClick={props.handleSubmitT}>Kaydet</Button>
+          <Input type="file" onChange={(e:any) => {
+            props.handleFoto(e)
+            props.handleFile(e)
+          }} />
+          <Button onClick={(e:any)=>props.handleApi(e)}>Ekle</Button>
         </Form.Item>
       </Form>
 

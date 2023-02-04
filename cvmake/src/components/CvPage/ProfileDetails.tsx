@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react'
-import { Table } from 'reactstrap'
+import { useEffect } from 'react'
 import Bir from './cvtemplates/bir'
 import Sıfır from './cvtemplates/sıfır'
 
 export default function ProfileDetails(props: any) {
-
-
-    useEffect(() => {
-        
-    }, [props.page])
-
+    //console.log("profildetail1")
 
     switch (props.page) {
         case 0:
             return (
+
                 <Sıfır n={props.n}></Sıfır>)
         case 1:
             return (
-                <Bir/>)
+                <Bir n={props.n} />)
         case 2:
             return (
                 <div style={{ width: "50%" }}>Content{props.page}</div>)
@@ -49,9 +44,6 @@ export default function ProfileDetails(props: any) {
             return (
                 <div style={{ width: "50%" }}>Content{props.page}</div>
             )
-
-        
-
     }
 }
 

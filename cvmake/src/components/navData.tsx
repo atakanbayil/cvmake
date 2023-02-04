@@ -1,8 +1,8 @@
 export const navData = [
     {
-        id: 0,
+        id: -1,
         text: "Temel Bilgiler",
-        link: "Temel"
+        link: "/Temel"
     },
     {
         id: 1,
@@ -10,12 +10,12 @@ export const navData = [
         link: "Çalışma"
     }, 
     {
-        id: 3,
+        id: 2,
         text: "Eğitim",
         link: "Eğitim"
     },
     {
-        id: 2,
+        id: 3,
         text: "Nitelikler",
         link: "Nitelikler"
     },

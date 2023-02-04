@@ -1,22 +1,16 @@
 import { MenuItem, MenuList, Paper } from "@mui/material";
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { useEffect, useState } from "react";
 import { templates } from "../templates";
 
 const { SubMenu } = Menu;
 
-export default function SidePage(props: any) {
+export default function SidePage2(props: any) {
 
-    useEffect(() => {
-        console.log(props.page);
-        
-      
-        
-      }, [props.page])
-      
+    //console.log("side2");
+
     return (
-        <Sider  style={{ height: "100vh" ,overflow:"scroll"}}>
+        <Sider  width={"15vw"} style={{ height: "100vh" ,overflow:"scroll"}}>
             <div >
                 <div
                     
@@ -26,7 +20,7 @@ export default function SidePage(props: any) {
                             {templates.map((item) => {
                                 return (
                                     
-                                        <MenuItem onClick={()=>props.setPage(item.id)}><img style ={{height:225}}src={item.src}></img></MenuItem>
+                                        <MenuItem key={item.id} onClick={()=>props.setPage(item.id)}><img style ={{height:225}}src={item.src}></img></MenuItem>
                                     
 
                                 )

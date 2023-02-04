@@ -1,7 +1,7 @@
+import { Card } from 'antd';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import Egitim from '../CvPage/Eğitim';
-import Final from '../CvPage/Final';
 import Nitelikler from '../CvPage/Nitelikler';
 import Ref from '../CvPage/Ref';
 import Temel from '../CvPage/Temel';
@@ -9,125 +9,25 @@ import Çalışma from '../CvPage/Çalışma';
 import İlgi from '../CvPage/İlgil';
 
 export default function Content(props: any) {
-    const [temel, setTemel] = useState({
-        name: "",
-        surname: "",
-        tel: "",
-        mail: "",
-        adres: "",
-    })
-    const [iş, setİş] = useState({
-        ünvan: "",
-        kurum: "",
-        baş: "",
-        bitiş: "",
-        desc: "",
 
-    })
-    const [eğitim, setEğitim] = useState({
-        okul: "",
-        bölüm: "",
-        baş: "",
-        bitiş: "",
-
-
-    })
-    const [işlist, setİşlist] = useState<object[] | []>([])
-    const [eğlist, setEğlist] = useState<object[] | []>([])
-    const [nitelik, setNitelik] = useState("")
-    const [ref, setRef] = useState("")
-    const [ilgi, setİlgi] = useState("")
-    const [foto, setFoto] = useState("")
-
-    const handleTemel = (e: any) => {
-        setTemel((old) => {
-            return {
-                ...old,
-                [e.target.name]: e.target.type = e.target.value
-            }
-        })
-
-    }
-    const handleİş = (e: any) => {
-        setİş((old) => {
-            return {
-                ...old,
-                [e.target.name]: e.target.type = e.target.value
-            }
-        })
-
-
-    }
-    const handleEğitim = (e: any) => {
-        setEğitim((old) => {
-            return {
-                ...old,
-                [e.target.name]: e.target.type = e.target.value
-            }
-        })
-
-
-    }
-
-    const handleSubmitE = (e: any) => {
-        setEğlist(prev => [...prev, eğitim])
-
-
-    }
-    const handleSubmitI = (e: any) => {
-        setİşlist(prev => [...prev, iş])
-
-    }
-    function handleFile(e: any) {
-        console.log(typeof (URL.createObjectURL(e.target.files[0])));
-
-        setFoto(URL.createObjectURL(e.target.files[0]));
-        // setFile(URL.createObjectURL(e.target.files[0]));
-    }
-
-    let user = {
-        temel: {
-            name: temel.name,
-            surname: temel.surname,
-            tel: temel.tel,
-            mail: temel.mail,
-            adres: temel.adres,
-        },
-        iş: {
-            ünvan:iş.ünvan,
-            kurum:iş.kurum,
-            baş:iş.baş,
-            bitiş:iş.bitiş,
-            desc:iş.desc
-        },
-        eğitim: eğitim,
-        işlist: işlist,
-        eğlist: eğlist,
-        nitelik: nitelik,
-        ref: ref,
-        ilgi: ilgi,
-        foto: foto,
-    }
-    useEffect(() => {
-        props.pull_data(user)
-    
-    }, [user])
-    
+    //console.log("content");
 
     return (
-        <div  style={{width:"50%"}}
+        <div style={{marginRight:"1.5%"}}>
+            <Card style={{ border: "none", margin: "5%", height: "80vh", width: "35vw" }}
 
-        >
-            <Routes>
-                <Route path="/Temel" element={<Temel n={user} handleTemel={handleTemel} handleFile={handleFile} />} />
-                <Route path="/Çalışma" element={<Çalışma n={user} handleSubmitI={handleSubmitI} handleİş={handleİş} />} />
-                <Route path="/Eğitim" element={<Egitim n={user} handleSubmitE={handleSubmitE} handleEğitim={handleEğitim} />} />
-                <Route path="/Nitelikler" element={<Nitelikler n={user} setNitelik={setNitelik} />} />
-                <Route path="/ilgi" element={<İlgi n={user} setİlgi={setİlgi} />} />
-                <Route path="/ref" element={<Ref n={user} setRef={setRef} />} />
-                <Route path="/final" element={<Final n={user} />} />
+            >
+                <Routes>
+                    <Route path="/temel" element={<Temel n={props.user} handleTemel={props.handleTemel} handleFoto={props.handleFoto} handleFile={props.handleFile} handleApi={props.handleApi} />} />
+                    <Route path="/Çalışma" element={<Çalışma n={props.user} handleSubmitI={props.handleSubmitI} handleİş={props.handleİş} />} />
+                    <Route path="/Eğitim" element={<Egitim n={props.user} handleSubmitE={props.handleSubmitE} handleEğitim={props.handleEğitim} />} />
+                    <Route path="/Nitelikler" element={<Nitelikler n={props.user} setNitelik={props.setNitelik} />} />
+                    <Route path="/ilgi" element={<İlgi n={props.user} setİlgi={props.setİlgi} />} />
+                    <Route path="/ref" element={<Ref n={props.user} setRef={props.setRef} />} />
 
-            </Routes>
+
+                </Routes>
+            </Card>
         </div>
     )
 }

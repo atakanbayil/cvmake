@@ -4,7 +4,7 @@ import React from "react";
 export default function Sıfır(props: any) {
 
     //console.log("sıfır")
-    return <Card style={{margin:"5%" ,height: "80vh" }}>
+    return <Card style={{ height: "80vh" }}>
         <meta charSet="utf-8" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -22,7 +22,8 @@ export default function Sıfır(props: any) {
         <div>
             <div style={{ display: "flex" }} className="px-4">
                 <img style={{ width: "30vh" }} src={props.n.foto} />
-                <h2 style={{ fontSize: "1.5vw" }} className="mx-4 font-bold mt-4">
+                <h2 style={{whiteSpace: "pre-line",
+    fontSize: "1.5vw" }} className="mx-4 font-bold mt-4">
                     {props.n.temel.name}{" "}{props.n.temel.surname}
                 </h2>
             </div>
@@ -108,9 +109,9 @@ export default function Sıfır(props: any) {
                         })}
                     <hr />
                     <h3 style={{ fontSize: "1vw" }} className="mb-3 ls-2">• EDUCATION</h3>{!props.n.eğlist.length ?
-                        <div>
+                        <div style={ {display:"flex"}}>
                             <p style={{ fontSize: "0.4vw" }}>{props.n.eğitim.okul}-{props.n.eğitim.bölüm}</p>
-
+                            <div style={{width:"1vw"}}></div>
                             <p style={{ fontSize: "0.4vw" }}>{props.n.eğitim.baş}-{props.n.eğitim.bitiş}</p>
 
                         </div>

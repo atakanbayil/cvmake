@@ -1,8 +1,11 @@
 import { Button } from "antd";
+import MenuItem from "antd/es/menu/MenuItem";
 import axios from "axios";
 import saveAs from "file-saver";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Menu } from "antd";
+
 export default function Headers(props) {
   const createAndDownloadPdf = () => {
     const data = props.user;
@@ -19,16 +22,13 @@ export default function Headers(props) {
   };
 
   return (
-    <div style={{ height: "13vh", backgroundColor: "#001529", color: "white" }}>
-      <div style={{ textAlign: "center" }}>HEADER</div>
-      <Link to="/final">
-        <Button
-          onClick={createAndDownloadPdf}
-          style={{ position: "fixed", right: "8vh" }}
-        >
-          Download
-        </Button>
+    <Menu  mode="horizontal">
+      <Link to="/cv">
+        <MenuItem style={{left:"2vw"}}>Cv Oluştur</MenuItem>
       </Link>
-    </div>
+      <Link to="/cvindir">
+        <MenuItem style={{position:"fixed",right:"2vw"}}>Cv Önizleme</MenuItem>
+      </Link>
+    </Menu>
   );
 }

@@ -42,7 +42,7 @@ export default function ProfileDetails(props: any) {
         default:
 
             return (
-                <div style={{ width: "50%" }}>Content{props.page}</div>
+                <div style={{ width: "50%" }}>Content1</div>
             )
     }
 }

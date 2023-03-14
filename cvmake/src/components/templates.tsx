@@ -1,16 +1,17 @@
-import imag from "../pub/temp1.png"
+import temp1 from "../pub/temp1.png"
+import temp2 from "../pub/temp2.png"
 export const templates = [
     {
         id: 0,
         text: "Temel Bilgiler",
         link: "Temel",
-        src: imag,
+        src: temp1,
     },
     {
         id: 1,
         text: "Çalışma Deneyiminiz",
         link: "Çalışma",
-        src: "https://media.istockphoto.com/id/1328270923/tr/vekt%C3%B6r/initial-cv-logo-cv-letter-logo-design-vector-template.webp?s=1024x1024&w=is&k=20&c=dR1hJrqUcdFVAhUbJLoychE_ys-2UgsAr6yAPJAyGv4=",
+        src: temp2,
     },
     {
         id: 2,

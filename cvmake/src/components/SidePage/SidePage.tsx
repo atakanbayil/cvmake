@@ -3,14 +3,67 @@ import Sider from "antd/es/layout/Sider";
 import { Link } from "react-router-dom";
 import { navData } from "../navData";
 import Paper from '@mui/material/Paper';
-import { MenuItem, MenuList } from "@mui/material";
-import { Button } from "antd";
+import { Box, Button, MenuItem, MenuList, Step, StepContent, StepLabel, Stepper, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 export default function SidePage(props: any) {
 
     //console.log("side");
 
+    
     return (
+        <Box style={{ margin: 40 }} sx={{ maxWidth: 400 }}>
+            <Stepper  activeStep={props.activeStep} orientation="vertical">
+                {navData.map((step, index) => (
+
+                        <Step key={step.id} >
+                            <StepLabel
+                                optional={
+                                    index === navData.length - 1 ? (
+                                        <Typography >Last step</Typography>
+                                    ) : null
+                                }
+                            >
+                                <Link to={step.link}>{step.text}</Link>
+                            </StepLabel>
+                            <StepContent TransitionProps={{ unmountOnExit: false }}>
+                                <Box sx={{ mb: 2 }}>
+                                    <div>
+                                        <Link to={index != navData.length - 1 ? navData[index + 1].link : navData[index].link}>
+                                            <Button
+                                                variant="contained"
+                                                sx={{ mt: 1, mr: 1 }}
+                                                onClick={props.handleNext}
+                                            >
+                                                {step.id === navData.length - 1 ?
+                                                    <Link                                                 onClick={props.handleNext}
+                                                    style={{ color: "white" }} to="/cvindir">{"Finish"}
+                                                    </Link> :
+                                                    'Continue'}
+                                            </Button>
+                                        </Link>
+                                        <Link to={(index != 0) ? navData[index - 1].link : navData[index].link}>
+                                            <Button
+                                                disabled={step.id === 0}
+                                                sx={{ mt: 1, mr: 1 }}
+                                            >
+                                                Back
+                                            </Button>
+                                        </Link>
+
+                                    </div>
+                                </Box>
+                            </StepContent>
+                        </Step>
+                     ))}
+            </Stepper>
+
+        </Box>
+    );
+}
+{/**/ }
+
+{/*
         <Sider width={"15vw"} style={{ height: "100vh" }} >
             <div>
                 <div
@@ -31,71 +84,5 @@ export default function SidePage(props: any) {
                     </Paper>
                 </div>
             </div>
-        </Sider>
-    );
-}
-{/*const [activeStep, setActiveStep] = React.useState(0);
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    }; */}
-{/*<Box sx={{ maxWidth: 400 }}>
-            <Stepper activeStep={activeStep} orientation="vertical">
-                {navData.map((step, index) => (
-
-                    <Step key={step.text}>
-                        <StepLabel
-                            optional={
-                                index === 2 ? (
-                                    <Typography >Last step</Typography>
-                                ) : null
-                            }
-                        >
-                            {step.text}
-                        </StepLabel>
-                        <StepContent TransitionProps={{ unmountOnExit: false }}>
-                            <Typography>{step.text}</Typography>
-                            <Box sx={{ mb: 2 }}>
-                                <div>
-                                    <Link to={index != navData.length - 1 ? navData[index + 1].link : navData[index].link}>
-                                        <Button
-                                            variant="contained"
-                                            onClick={handleNext}
-                                            sx={{ mt: 1, mr: 1 }}
-                                        >
-                                            {index === navData.length - 1 ? 'Finish' : 'Continue'}
-                                        </Button>
-                                    </Link>
-                                    <Link to={(index != 0  ) ? navData[index - 1].link : navData[index].link}>
-                                        <Button
-                                            disabled={index === 0}
-                                            onClick={handleBack}
-                                            sx={{ mt: 1, mr: 1 }}
-                                        >
-                                            Back
-                                        </Button>
-                                    </Link>
-
-                                </div>
-                            </Box>
-                        </StepContent>
-                    </Step>
-                ))}
-            </Stepper>
-            {activeStep === navData.length && (
-                <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
-                    <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                        Reset
-                    </Button>
-                </Paper>
-            )}
-        </Box> */}
+        </Sider> */}
+{/**/ }

@@ -1,6 +1,6 @@
 export const navData = [
     {
-        id: -1,
+        id: 0   ,
         text: "Temel Bilgiler",
         link: "/cv/Temel"
     },

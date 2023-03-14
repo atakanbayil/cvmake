@@ -1,18 +1,6 @@
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom"
-import { Button, Card, Layout, Row } from "antd";
-import SidePage from "./components/SidePage/SidePage";
-import Content from "./components/Content/Content";
-import { Footer } from "antd/es/layout/layout";
-import SidePage2 from "./components/SidePage/SidePage2";
-import { Fragment, useEffect, useState } from "react";
-import Content2 from "./components/Content/Content2";
-import Headers from "./components/Header/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useState } from "react";
 import axios from "axios";
-import socket from "./utils/socket";
-import { Stack } from "@mui/material";
-import { type } from "os";
-import { log } from "console";
-import { createMemoryHistory } from "history";
 import Cv from "./Cv";
 import Home from "./Home";
 import Egitim from "./components/CvPage/Eğitim";
@@ -35,7 +23,8 @@ function App(props: any) {
     surname: "",
     tel: "",
     mail: "",
-    adres: "",
+    il: "",
+    ilçe:"",
   })
   const [iş, setİş] = useState({
     ünvan: "",
@@ -71,10 +60,20 @@ function App(props: any) {
   }
   const handleİş = (e: any) => {
     setİş((old) => {
-      return {
-        ...old,
-        [e.target.name]: e.target.type = e.target.value
+      if (e.target.type === "text") {
+        return {
+          ...old,
+          [e.target.name]: e.target.type = e.target.value
+        }
       }
+      else {
+        return {
+
+          ...old,
+          desc: e.target.value,
+        }
+      }
+
     })
 
 
@@ -89,7 +88,22 @@ function App(props: any) {
 
 
   }
+  const handleTarih = (e: any) => {
 
+    setİş((old) => {
+      console.log("baş:", e[0].toString().split(" ", 4).slice(1).join());
+      console.log("bitiş:", e[1].toString().split(" ", 4).slice(1).join());
+
+      return {
+        ...old,
+        baş: e[0].toString().split(" ", 4).slice(1).join(),
+        bitiş: e[1].toString().split(" ", 4).slice(1).join(),
+      }
+    }
+    )
+
+
+  }
   const handleSubmitE = (e: any) => {
     setEğlist(prev => [...prev, eğitim])
 
@@ -121,7 +135,8 @@ function App(props: any) {
       surname: temel.surname,
       tel: temel.tel,
       mail: temel.mail,
-      adres: temel.adres,
+      il: temel.il,
+      ilçe:temel.ilçe,
     },
     iş: {
       ünvan: iş.ünvan,
@@ -144,35 +159,38 @@ function App(props: any) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home
-          user={user}
-          page={page}
-          setPage={setPage}
-        />} />
-        <Route path="/cv" element={<Cv
-          handleEğitim={handleEğitim}
-          handleFoto={handleFoto}
-          handleİş={handleİş}
-          handleSubmitE={handleSubmitE}
-          handleSubmitI={handleSubmitI}
-          handleTemel={handleTemel}
-          user={user}
-          setİlgi={setİlgi}
-          setNitelik={setNitelik}
-          setRef={setRef}
-          handleFile={handleFile}
-          handleApi={handleApi}
-          setPage={setPage} 
-          page = {page}/>} >
-          <Route index path="/cv/Temel" element={<Temel n={user} handleTemel={handleTemel} handleFoto={handleFoto} handleFile={handleFile} handleApi={handleApi} />} />
-          <Route path="/cv/Çalışma" element={<Çalışma n={user} handleSubmitI={handleSubmitI} handleİş={handleİş} />} />
-          <Route path="/cv/Eğitim" element={<Egitim n={user} handleSubmitE={handleSubmitE} handleEğitim={handleEğitim} />} />
+        <Route path="/" element={
+          <Home
+            user={user}
+            page={page}
+            setPage={setPage}
+          />} />
+        <Route path="/cv" element={
+          <Cv
+            handleTarih={handleTarih}
+            handleEğitim={handleEğitim}
+            handleFoto={handleFoto}
+            handleİş={handleİş}
+            handleSubmitE={handleSubmitE}
+            handleSubmitI={handleSubmitI}
+            handleTemel={handleTemel}
+            user={user}
+            setİlgi={setİlgi}
+            setNitelik={setNitelik}
+            setRef={setRef}
+            handleFile={handleFile}
+            handleApi={handleApi}
+            setPage={setPage}
+            page={page} />}>
+          <Route index path="/cv/Temel" element={<Temel  n={user} handleTemel={handleTemel} handleFoto={handleFoto} handleFile={handleFile} handleApi={handleApi} />} />
+          <Route path="/cv/Çalışma" element={<Çalışma n={user} handleTarih={handleTarih} handleSubmitI={handleSubmitI} handleİş={handleİş} />} />
+          <Route path="/cv/Eğitim" element={<Egitim n={user} handleTarih={handleTarih} handleSubmitE={handleSubmitE} handleEğitim={handleEğitim} />} />
           <Route path="/cv/Nitelikler" element={<Nitelikler n={user} setNitelik={setNitelik} />} />
           <Route path="/cv/ilgi" element={<İlgi n={user} setİlgi={setİlgi} />} />
           <Route path="/cv/ref" element={<Ref n={user} setRef={setRef} />} />
 
         </Route>
-          <Route path="/cvindir" element={<Cvİndir n = {user}></Cvİndir>}></Route>
+        <Route path="/cvindir" element={<Cvİndir page={page} n={user} />} />
 
 
       </Routes>

@@ -8,7 +8,7 @@ export default function SidePage2(props: any) {
 
 
     return (
-        <Sider  width={"15vw"} style={{right:"0vw", height: "100vh" ,overflow:"scroll"}}>
+        <Sider  width={"15vw"} style={{right:"0vw", height: "100vh" ,overflow:"scroll",position:"fixed"}}>
             <div >
                 <div
                     

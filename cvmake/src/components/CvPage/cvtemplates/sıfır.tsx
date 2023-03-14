@@ -22,7 +22,7 @@ export default function Sıfır(props: any) {
         <div>
             <div style={{ display: "flex" }} className="px-4">
                 <img style={{ width: "30vh" }} src={props.n.foto} />
-                <h2 style={{whiteSpace: "pre-line",
+                <h2 style={{ overflow: "hidden",
     fontSize: "1.5vw" }} className="mx-4 font-bold mt-4">
                     {props.n.temel.name}{" "}{props.n.temel.surname}
                 </h2>

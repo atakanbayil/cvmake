@@ -8,7 +8,7 @@ var pdfTemplate = require("./documents/index2");
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = 5000;
 const multer = require("multer")
 const upload = multer({dest:"uploads/"})
 app.use(cors());
@@ -20,7 +20,7 @@ app.post('/api/image',upload.single("image"),(req,res)=>{
 })
 
 app.post('/create-pdf', (req, res) => {
-    pdfTemplate = pdfTemplate.replaceAll("{{image}}",img)
+    console.log("backend");
     pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
         if(err) {
             res.send(Promise.reject());

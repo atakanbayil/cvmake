@@ -1,8 +1,13 @@
 import { Input } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function İlgi(props:any) {
+  
+  useEffect(()=>{
+    props.setActiveStep(4)
 
+  },[props.activeStep])
+  
     return (
       <div>
         <label htmlFor="Ad">İlgi Alanları</label>

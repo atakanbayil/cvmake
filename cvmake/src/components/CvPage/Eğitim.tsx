@@ -1,9 +1,28 @@
-import { Button, Form, Input } from 'antd'
-import React, { useState } from 'react'
+import { Button, Form, Input, DatePicker } from 'antd'
+import React, { useEffect } from 'react'
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import type { RangePickerProps } from 'antd/es/date-picker';
+
+dayjs.extend(customParseFormat);
+
+// eslint-disable-next-line arrow-body-style
+const disabledDate: RangePickerProps['disabledDate'] = (current) => {
+  // Can not select days before today and today
+  
+  
+  return current && current > dayjs().endOf('day');
+};
 
 export default function Egitim(props: any) {
+  const { RangePicker } = DatePicker;
+  const { TextArea } = Input;
 
+  useEffect(()=>{
+    props.setActiveStep(2)
 
+  },[props.activeStep])
+  
   return (
     <div>
       <Form >
@@ -13,13 +32,10 @@ export default function Egitim(props: any) {
         <Form.Item>Bölüm
           <Input value={props.n.eğitim.bölüm} name="bölüm" onChange={props.handleEğitim}></Input>
         </Form.Item>
-        <Form.Item>Başlangıç
-          <Input value={props.n.eğitim.baş} type="date" name='baş' onChange={props.handleEğitim}></Input>
-        </Form.Item>
-        <Form.Item>Bitiş
-          <Input value={props.n.eğitim.bitiş} type="date" name='bitiş' onChange={props.handleEğitim}></Input>
-        </Form.Item>
         <Form.Item>
+          <RangePicker disabledDate={disabledDate} size="large" onChange={props.handleTarih}  allowClear={false} />
+
+        </Form.Item><Form.Item>
           <Button onClick={props.handleSubmitE}>Ekle</Button>
         </Form.Item>
       </Form>

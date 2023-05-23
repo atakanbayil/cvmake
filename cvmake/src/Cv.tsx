@@ -69,8 +69,8 @@ export default function Cv(props: any) {
         e.stopPropagation();
         e.preventDefault();
       }
-      else if (!props.user.temel.foto) {
-
+      else if (!props.user.foto) {
+        console.log(props.user)
         openNotification("top", "Lütfen fotoğraf yükleyiniz.")
         e.stopPropagation();
         e.preventDefault();

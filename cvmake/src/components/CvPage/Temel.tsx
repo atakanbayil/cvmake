@@ -2,9 +2,12 @@ import { Button, Form, Input, Upload } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { PlusOutlined } from '@ant-design/icons';
 
+import { AlertFillIcon } from '@primer/octicons-react'
+import { notification } from 'antd';
 export default function CvPage(props: any) {
 
   //console.log("as")
+
 
   useEffect(() => {
     props.setActiveStep(0)
@@ -14,20 +17,21 @@ export default function CvPage(props: any) {
     <>
       {props.contextHolder}
       <div>
-        <Form style={{ padding: 10, backgroundColor: "white", flexDirection: "column", display: "flex", justifyContent: "space-between" }} layout={"inline"}>
+        <Form style={{ marginTop: 40, padding: 10, backgroundColor: "white", flexDirection: "column", display: "flex", justifyContent: "space-between" }} layout={"inline"}>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <div >
-              <Form.Item rules={[{ required: true }]} style={{ margin: 10, height: "120px" }} htmlFor='foto'>Foto
-                <Upload style={{ height: "120px" }} maxCount={1} onChange={(e: any) => props.handleFoto(e)} action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  listType="picture-card">
-                  <div >
-                    <PlusOutlined />
-                    <div style={{ marginTop: 8 }}>Upload</div>
-                  </div>
-                </Upload>
-              </Form.Item>
+            
+              <div style={{display:"flex",flexDirection:"column",marginRight:"20%",width:"25%"}}><div style={{marginLeft:"10%"}}>FOTO</div>
+                <Form.Item rules={[{ required: true }]} style={{ margin: 10, }} htmlFor='foto'>
+                  {!props.n.foto && <img style={{ width: "100%" }} src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'></img>}
+                  {props.n.foto && <img style={{ width: "152px",height:"152px" }} src={props.n.foto}></img>}
+                  
+                  <input type="file" onChange={props.handleFoto} />
 
-            </div>
+                  
+                </Form.Item>
+
+              </div>
+            
             <div style={{ width: '100%', display: "flex", flexDirection: "column" }}>
               <Form.Item rules={[{ required: true }]} style={{ margin: 10 }} htmlFor="Ad">Ad
                 <Input style={{ padding: 10 }} value={props.n.temel.name} type="text" name='name' onChange={props.handleTemel}></Input>
@@ -75,3 +79,12 @@ export default function CvPage(props: any) {
 
   )
 }
+
+/*<Form.Item rules={[{ required: true }]} style={{ margin: 10,  }} htmlFor='foto'>Foto
+                <Upload  maxCount={1} onChange={props.handleFoto}  listType="picture-card">
+                  <div >
+                    <PlusOutlined />
+                    <div style={{ marginTop: 8 }}>Upload</div>
+                  </div>
+                </Upload>
+              </Form.Item> */

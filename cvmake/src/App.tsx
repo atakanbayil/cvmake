@@ -118,7 +118,7 @@ function App(props: any) {
     //console.log(file)
   }
   function handleFoto(e: any) {
-
+    console.log(e)
     setFoto(URL.createObjectURL(e.target.files[0]));
     // setFile(URL.createObjectURL(e.target.files[0]));
   }

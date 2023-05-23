@@ -144,10 +144,10 @@ export default function Cvİndir(props) {
                 </View>
 
                 <View style={styles.kisisel2}>
-                  <View style={{ justifyContent: "center" }}>
-                    <Text>PROFILE</Text>
+                  <View style={{ fontSize:24,justifyContent: "center" }}>
+                    <Text>Profile</Text>
                   </View>
-                  <View style={{ marginLeft: 15 }}>
+                  <View style={{ display:"flex",marginLeft: 25 }}>
                     <Text style={styles.txt}>
                       Telefon:
                       <Text>{" " + props.n.temel.tel + " "}</Text>
@@ -157,9 +157,14 @@ export default function Cvİndir(props) {
                       <Text>{" " + props.n.temel.mail + " "}</Text>
                     </Text>
                     <Text style={styles.txt}>
-                      Adres:
-                      <Text>{" " + props.n.temel.adres}</Text>
+                      Sehir:
+                      <Text>{" " + props.n.temel.il}</Text>
                     </Text>
+                    <Text style={styles.txt}>
+                      İlçe:
+                      <Text>{" " + props.n.temel.ilçe}</Text>
+                    </Text>
+                  
                   </View>
                 </View>
                 <View style={styles.line}>
